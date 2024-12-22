@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object and Face Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Object and Face Detection</h1>
+    <button id="detectButton">DETECT</button>
+    <button id="storeButton">STORE Object</button>
+    <button id="storeFaceButton">STORE Face</button>
+    <button id="verifyObjectButton">VERIFY Object</button>
+    <button id="verifyFaceButton">VERIFY Face</button>
+    <div id="output" style="margin-top: 20px;"></div>
+    
+    <script>
+        const updateOutput = (message) => {
+            document.getElementById('output').textContent = message;
+        };
+
+        document.getElementById('detectButton').addEventListener('click', () => {
+            fetch('/detect', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => updateOutput(data.output));
+        });
+
+        document.getElementById('storeButton').addEventListener('click', () => {
+            fetch('/store', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'object' })
+            })
+                .then(response => response.json())
+                .then(data => updateOutput(data.output));
+        });
+
+        document.getElementById('storeFaceButton').addEventListener('click', () => {
+            fetch('/store', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'face' })
+            })
+                .then(response => response.json())
+                .then(data => updateOutput(data.output));
+        });
+
+        document.getElementById('verifyObjectButton').addEventListener('click', () => {
+            fetch('/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'object' })
+            })
+                .then(response => response.json())
+                .then(data => updateOutput(data.output));
+        });
+
+        document.getElementById('verifyFaceButton').addEventListener('click', () => {
+            fetch('/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'face' })
+            })
+                .then(response => response.json())
+                .then(data => updateOutput(data.output));
+        });
+    </script>
+</body>
+</html>
