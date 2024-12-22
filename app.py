@@ -20,14 +20,5 @@ def store():
     elif action == 'face':
         return jsonify({"output": "Face stored"})
 
-@app.route('/verify', methods=['POST'])
-def verify():
-    data = request.json
-    action = data.get('action')
-    if action == 'object':
-        return jsonify({"output": "Object Matched"})
-    elif action == 'face':
-        return jsonify({"output": "Face NOT Matched"})
-
 if __name__ == '__main__':
     app.run()
