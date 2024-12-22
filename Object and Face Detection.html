@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object and Face Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Object and Face Detection</h1>
+
+    <div class="container">
+        <button id="detectButton">DETECT</button>
+
+        <button id="storeButton">STORE</button>
+        <div id="storeOptions" class="hidden">
+            <button id="storeObject">Store new Object</button>
+            <button id="storeFace">Store new Face</button>
+        </div>
+
+        <div id="output" style="margin-top: 20px; font-size: 20px; color: #333;"></div>
+    </div>
+
+    <script>
+        document.getElementById("storeButton").addEventListener("click", () => {
+            const storeOptions = document.getElementById("storeOptions");
+            storeOptions.classList.toggle("hidden");
+        });
+
+        document.getElementById("verifyButton").addEventListener("click", () => {
+            const verifyOptions = document.getElementById("verifyOptions");
+            verifyOptions.classList.toggle("hidden");
+        });
+
+        document.getElementById("detectButton").addEventListener("click", () => {
+            document.getElementById("output").textContent = "Detecting objects and faces...";
+            
+        });
+
+        document.getElementById("storeObject").addEventListener("click", () => {
+            document.getElementById("output").textContent = "Storing object...";
+
+        });
+
+        document.getElementById("storeFace").addEventListener("click", () => {
+            document.getElementById("output").textContent = "Storing face...";
+
+        });
+
+        document.getElementById("verifyObject").addEventListener("click", () => {
+            document.getElementById("output").textContent = "Verifying object...";
+
+            setTimeout(() => {
+                document.getElementById("output").textContent = "Object Matched";
+            }, 2000);
+        });
+
+        document.getElementById("verifyFace").addEventListener("click", () => {
+            document.getElementById("output").textContent = "Verifying face...";
+
+            setTimeout(() => {
+                document.getElementById("output").textContent = "Face NOT Matched";
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
